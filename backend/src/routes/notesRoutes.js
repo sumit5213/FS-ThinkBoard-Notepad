@@ -1,16 +1,30 @@
 import express from "express"
 import { createNotes, deleteNotes, getAllNotes, getNoteById, updateNotes } from "../controllers/notesController.js"
+import { verifyToken } from "../middlewares/authenticate.js"
 
 const router = express.Router()
 
-router.get("/",getAllNotes)
+// router.use(verifyToken);
 
-router.get("/:id", getNoteById)
 
-router.post("/", createNotes)
+// router.get("/" ,getAllNotes)
 
-router.put("/:id",updateNotes)
+// router.get("/:id", getNoteById)
 
-router.delete("/:id", deleteNotes)
+// router.post("/", createNotes)
+
+// router.put("/:id",updateNotes)
+
+// router.delete("/:id", deleteNotes)
+
+router.route("/")
+  .get(verifyToken, getAllNotes)
+  .post(verifyToken, createNotes);
+
+router.route("/:id")
+  .get(verifyToken, getNoteById)
+  .put(verifyToken, updateNotes)
+  .delete(verifyToken, deleteNotes);
+
 
 export default router   
