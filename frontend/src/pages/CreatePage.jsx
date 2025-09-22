@@ -20,7 +20,7 @@ function CreatePage() {
         }
         setLoading(true)
         try {
-            await axiosInstance.post("/notes", {
+            await axiosInstance.post("/notes/create", {
                 title, content
             })
             toast.success("Note created successfully!")

@@ -15,9 +15,9 @@ export async function getNoteById(req, res) {
 
 export async function getAllNotes(req, res) {
     try {
-        // const notes = await Note.find().sort({createdAt:-1});
         const notes = await Note.find({ user: req.user._id }).sort({ createdAt: -1 });
-        res.status(200).json(notes)
+
+        res.status(200).json(notes) 
     } catch (error) {
         console.error("Error while fetching the notes", error)
         res.status(500).json({ message: "Internal Server Error" })

@@ -6,7 +6,7 @@ function ProtectedRoute({ children }) {
 
   // If no token, redirect to signin
   if (!token) {
-    return <Navigate to="/signin" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   // Otherwise show the protected page

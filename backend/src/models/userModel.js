@@ -11,26 +11,25 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: false
+        required: true
     },
     googleId: {
         type: String,
         unique: true,
         sparse: true,
     },
-    // notes: [
-    //     {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: "Note",
-    //         // default: []
-    //     }
-    // ],
+    notes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Note",
+        }
+    ],
 
-    notes: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "noteModel",
-        default: []
-    }
+    // notes: {
+    //     type: [mongoose.Schema.Types.ObjectId],
+    //     ref: "Note",
+    //     default: []
+    // }
 
 
     // name: {

@@ -4,27 +4,13 @@ import { verifyToken } from "../middlewares/authenticate.js"
 
 const router = express.Router()
 
-// router.use(verifyToken);
 
+router.get("/", verifyToken, getAllNotes)
+router.post("/create", verifyToken, createNotes);
 
-// router.get("/" ,getAllNotes)
-
-// router.get("/:id", getNoteById)
-
-// router.post("/", createNotes)
-
-// router.put("/:id",updateNotes)
-
-// router.delete("/:id", deleteNotes)
-
-router.route("/")
-  .get(verifyToken, getAllNotes)
-  .post(verifyToken, createNotes);
-
-router.route("/:id")
-  .get(verifyToken, getNoteById)
-  .put(verifyToken, updateNotes)
-  .delete(verifyToken, deleteNotes);
+router.get("/:id", verifyToken, getNoteById)
+router.put("/:id", verifyToken, updateNotes)
+router.delete("/:id", verifyToken, deleteNotes);
 
 
 export default router   
