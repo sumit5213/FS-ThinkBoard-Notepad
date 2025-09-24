@@ -24,7 +24,7 @@ function CreatePage() {
                 title, content
             })
             toast.success("Note created successfully!")
-            navigate("/")
+            navigate("/home")
         } catch (error) {
             console.log("Erorr occured while creating an note", error)
             toast.error("Failed to create an note")
@@ -38,7 +38,7 @@ function CreatePage() {
         <div className="min-h-screen text-primary bg-base-200">
             <div className='container mx-auto px-4 py-8'>
                 <div className='max-w-2xl mx-auto'>
-                    <Link to={"/"} className=" btn btn-ghost mb-6">
+                    <Link to={"/home"} className=" btn btn-ghost mb-6">
                         <ArrowLeftIcon className='size-5' /> Back to Notes
                     </Link>
                     <div className='card bg-base-100'>

@@ -37,7 +37,7 @@ function NoteCard({note, setNotes}) {
                         {formatDate(new Date(note.createdAt))}
                     </span>
                     <div className='flex items-center gap-4'>
-                        { <PenSquareIcon className=" size-4" /*onClick={handleUpdate} */ /> }
+                        { <PenSquareIcon className=" size-4" onClick={handleUpdate} /> }
                         <button className='btn btn-ghost btn-xs text-error'>
                             <Trash2Icon className=" size-4" onClick={(e)=>handleDelete(e,note._id)}/>
                         </button>
