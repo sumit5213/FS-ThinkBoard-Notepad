@@ -22,6 +22,7 @@ const NoteDetailPage = () => {
       } catch (error) {
         console.log("Error in fetching note", error);
         toast.error("Failed to fetch the note");
+        navigate("/home")                 //optional update
       } finally {
         setLoading(false);
       }
@@ -31,19 +32,20 @@ const NoteDetailPage = () => {
   }, [id]);
 
   const handleDelete = async () => {
+
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
     try {
       await axiosInstance.delete(`/notes/${id}`);
       toast.success("Note deleted");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.log("Error deleting the note:", error);
       toast.error("Failed to delete note");
     }
   };
 
-  const handleSave = async () => {
+  const handleUpdateAndSave = async () => {
     if (!note.title.trim() || !note.content.trim()) {
       toast.error("Please add a title or content");
       return;
@@ -52,7 +54,8 @@ const NoteDetailPage = () => {
     setSaving(true);
 
     try {
-      await axiosInstance.put(`/notes/${id}`, note);
+      const payload = { title: note.title, content: note.content };
+      await axiosInstance.put(`/notes/${id}`, payload);
       toast.success("Note updated successfully");
       navigate("/home");
     } catch (error) {
@@ -114,7 +117,7 @@ const NoteDetailPage = () => {
               </div>
 
               <div className="card-actions justify-end">
-                <button className="btn btn-primary" disabled={saving} onClick={handleSave}>
+                <button className="btn btn-primary" disabled={saving} onClick={handleUpdateAndSave}>
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
               </div>

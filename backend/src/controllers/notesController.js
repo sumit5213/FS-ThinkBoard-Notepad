@@ -39,13 +39,13 @@ export async function createNotes(req, res) {
 export async function updateNotes(req, res) {
     try {
         const { title, content } = req.body;
-        const updatedNote = await Note.findByIdAndUpdate({ _id: req.params.id, user: req.user._id },
+        const updatedNote = await Note.findOneAndUpdate({ _id: req.params.id, user: req.user._id },
             { title, content },
             { new: true }
         );
 
         if (!updatedNote) return res.status(404).json({ message: "Note not found or unauthorized" });
-        res.status(200).json({ message: "Note updated succesffuly", note });
+        res.status(200).json({ message: "Note updated succesffuly", updatedNote });
     } catch (error) {
         console.error("Error while updating the notes", error)
         res.status(500).json({ message: "Internal Server Error" })
