@@ -3,7 +3,6 @@ import session from "express-session"
 import cors from "cors"
 import dotenv from "dotenv"
 import path from "path"
-import passport from "passport"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
