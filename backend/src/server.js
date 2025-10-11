@@ -7,7 +7,6 @@ import passport from "passport"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
-import "../config/passport.js"
 
 import { connectDB } from "../config/db.js"
 import rateLimiter from "./middlewares/rateLimiters.js"
