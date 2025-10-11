@@ -7,7 +7,6 @@ import passport from "passport"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
-// import authRoutes from "./routes/googleAuthRoute.js"
 import "../config/passport.js"
 
 import { connectDB } from "../config/db.js"
@@ -19,22 +18,6 @@ const app = express()
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
-// app.use(
-//     session({
-//         secret: process.env.SESSION_SECRET || "supersecret",
-//         resave: false,
-//         saveUninitialized: false,
-//     })
-// );
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-
-
-// 
-
-// app.use(cors())
 
 
 if (process.env.NODE_ENV !== "production") {
