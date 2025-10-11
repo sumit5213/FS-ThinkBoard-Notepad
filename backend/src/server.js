@@ -54,7 +54,7 @@ const __dirname = path.resolve();
 app.use(cors())
 
 app.use(express.json())
-app.use(rateLimiter)
+// app.use(rateLimiter)
 
 
 
