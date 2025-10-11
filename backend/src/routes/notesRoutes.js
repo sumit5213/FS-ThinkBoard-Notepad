@@ -1,7 +1,7 @@
 import express from "express"
 import { createNotes, deleteNotes, getAllNotes, getNoteById, updateNotes } from "../controllers/notesController.js"
 import { verifyToken } from "../middlewares/authenticate.js"
-
+ 
 const router = express.Router()
 
 
