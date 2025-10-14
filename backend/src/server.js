@@ -3,6 +3,8 @@ import session from "express-session"
 import cors from "cors"
 import dotenv from "dotenv"
 import path from "path"
+import passport from "../config/passport.js"
+// import passport from "passport"  
 
 import notesRoutes from "./routes/notesRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
@@ -55,7 +57,7 @@ app.use("/api/auth", authRoutes)
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    app.get("*", (req, res) => {
+    app.get("", (req, res) => {
         res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
     });
 }

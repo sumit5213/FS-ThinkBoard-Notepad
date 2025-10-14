@@ -33,7 +33,7 @@ export const googleCallback = (req, res, next) => {                     // jwt a
             if (!user) return res.redirect("http://localhost:5173/login")
 
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: "1h" })
-            console.log(token)
+            // console.log(token)
             // return res.status(201).json({ user, token });
             return res.redirect(`http://localhost:5173/auth/callback?token=${token}`);
         })(req, res, next)
