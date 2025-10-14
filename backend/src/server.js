@@ -22,13 +22,20 @@ const __dirname = path.resolve();
 
 // MIDDLEWARES START
 
-if (process.env.NODE_ENV !== "production") {
-    app.use(
-        cors({
-            origin: "http://localhost:5173",
-        })
-    );
+// if (process.env.NODE_ENV !== "production") {
+//     app.use(
+//         cors({
+//             origin: "http://localhost:5173",
+//         })
+//     );
+// };
+
+const corsOptions = {
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    credentials: true,
 };
+app.use(cors(corsOptions));
+
 
 app.use(express.json())
 app.use(rateLimiter)
@@ -37,7 +44,10 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET || "supersecret",
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: false,
+        cookie: {
+            secure: process.env.NODE_ENV === "production",
+        },
     })
 );
 
