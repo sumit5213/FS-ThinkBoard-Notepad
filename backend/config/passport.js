@@ -12,7 +12,7 @@ passport.use(
             clientSecret: process.env.GGOGLE_CLIENT_SECRET,
             callbackURL: process.env.GOOGLE_CALLBACK_URL,
         },
-        async function (accessTokn, refereshToken, profile, done) {
+        async function (accessToken, refereshToken, profile, done) {
             try{
                 let user = await User.findOne({ googleId: profile.id });
 
@@ -44,10 +44,4 @@ passport.deserializeUser( async function (id, done){
     }
 })
 
-// passport.deserializeUser(function(id, done){
-//     User.findById(id, function (err, user){
-//         done(err, user)
-//     })
-// })
-
-// module.exports = passport
+export default passport;

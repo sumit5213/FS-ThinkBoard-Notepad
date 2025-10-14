@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -11,31 +11,20 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        // required: true,
+        required: function(){ return !this.googleId; }
     },
     googleId: {
         type: String,
         unique: true,
         sparse: true,
     },
-    notes: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Note",
-        }
-    ],
-
-    // notes: {
-    //     type: [mongoose.Schema.Types.ObjectId],
-    //     ref: "Note",
-    //     default: []
-    // }
-
-
-    // name: {
-    //     type: String,
-    //     required: true
-    // }
+    // notes: [
+    //     {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: "Note",
+    //     }
+    // ],
 }, { timestamps: true })
 
 const User = mongoose.model("user", userSchema)
