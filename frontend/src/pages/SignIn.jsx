@@ -54,7 +54,7 @@ function SignIn() {
 
     return (
         <div className='min-h-screen bg-base-200 py-20'>
-            <div className="card bg-primary/65 mx-auto text-primary-content w-1/3">
+            <div className="card bg-primary/65 mx-auto text-primary-content w-96">
                 <div className="card-body">
                     <h2 className="mt-2 text-center text-2xl/9 font-bold tracking-tight text-white">
                         {isSignUp ? "Create an Account" : "Sign In to your Account"}
