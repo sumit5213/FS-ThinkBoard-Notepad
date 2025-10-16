@@ -1,9 +1,10 @@
 import passport from "passport"
 import jwt from "jsonwebtoken"
+ 
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
-
+ 
 export const googleLogin = passport.authenticate("google", {
     scope: ['profile', 'email']
 })
@@ -24,7 +25,7 @@ export const googleLogin = passport.authenticate("google", {
 //         })
 //     })(req, res, next)
 // }
-
+ 
 
 export const googleCallback = (req, res, next) => {                     // jwt approach for the google login
     passport.authenticate("google", {
@@ -38,7 +39,7 @@ export const googleCallback = (req, res, next) => {                     // jwt a
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: "1h" })
             // console.l`og(token)
             // return res.status(201).json({ user, token });
-            return res.redirect(`${FRONTEND_URL}/auth/callback?token=${token}`);
+            return res.redirect(`${FRONTEND_URL}/auth/google/success?token=${token}`);
         })(req, res, next)
 }
 

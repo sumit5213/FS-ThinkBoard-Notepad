@@ -11,7 +11,7 @@ const BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
 const axiosInstance = axios.create({
   baseURL: BASE_URL, 
 });
-
+   
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -21,6 +21,6 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => Promise.reject(error)
-);
+); 
 
 export default axiosInstance;

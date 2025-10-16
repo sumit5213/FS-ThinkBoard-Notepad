@@ -22,7 +22,7 @@ function App() {
           <Route path="/login" element={<SignIn />} />
           <Route path="/" element={<SignIn />} /> {/* For convenience */}
 
-          <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/auth/google/success" element={<AuthCallback />} />
 
           {/* Protected Routes */}
           <Route 

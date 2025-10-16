@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 // The URL remains the same for both Google buttons
 const GOOGLE_AUTH_URL = `${import.meta.env.VITE_API_URL}/api/auth/google`;
-  
+
 function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
