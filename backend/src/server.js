@@ -5,7 +5,6 @@ import dotenv from "dotenv"
 import path from "path"
 import { fileURLToPath } from 'url'
 import passport from "../config/passport.js"
-import { fileURLToPath } from 'url'
 
 
 import notesRoutes from "./routes/notesRoutes.js"
@@ -20,7 +19,6 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 5000;
 
-// Properly resolve __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -76,10 +74,10 @@ app.use("/api/auth", authRoutes)
 
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
     app.get("", (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+        res.sendFile(path.join(__dirname, "../../frontend/dist", "index.html"));
     });
 }
 
