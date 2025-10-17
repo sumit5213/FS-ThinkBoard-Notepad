@@ -5,7 +5,6 @@ import dotenv from "dotenv"
 import path from "path"
 import { fileURLToPath } from 'url'
 import passport from "../config/passport.js"
-import passport from "../config/passport.js"    
 import { fileURLToPath } from 'url'
 
 
@@ -64,7 +63,6 @@ app.use(
 );
  
 app.use(passport.initialize());
-// app.use(passport.session()); 
 app.use(passport.session()); 
 
 //MIDDLEWARES END
