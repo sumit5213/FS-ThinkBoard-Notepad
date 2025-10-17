@@ -42,10 +42,6 @@ const AuthCallback = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> e2b074f (changes)
     useEffect(() => {
         // The useSearchParams hook directly gives us access to the URL's query string.
         const token = searchParams.get('token');
