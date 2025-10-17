@@ -3,7 +3,8 @@ import session from "express-session"
 import cors from "cors"
 import dotenv from "dotenv"
 import path from "path"
-import passport from "../config/passport.js"    
+import { fileURLToPath } from 'url'
+import passport from "../config/passport.js"
 
 import notesRoutes from "./routes/notesRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
@@ -16,19 +17,15 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 5000;
-const __dirname = path.resolve();
+
+// Properly resolve __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // MIDDLEWARES START 
 
-if (process.env.NODE_ENV !== "production") {
-    app.use(
-        cors({
-            origin: "http://localhost:5173",
-        })
-    );
-};
-
+// CORS configuration - works for both development and production
 const corsOptions = {
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
@@ -43,10 +40,11 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET || "supersecret",
         resave: false,
-        saveUninitialized: false,   
-        // cookie: {
-        //     secure: process.env.NODE_ENV === "production",
-        // },
+        saveUninitialized: false,
+        cookie: {
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        },
     })
 );
  
@@ -64,15 +62,15 @@ app.use("/api/auth", authRoutes)
 
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-    app.get("", (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "../../frontend/dist", "index.html"));
     });
 }
 
 connectDB().then(() => {
     app.listen(PORT, () => {
-        console.log("server is started")
+        console.log(`Server is started on port ${PORT}`)
     })
 })
