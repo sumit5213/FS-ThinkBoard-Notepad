@@ -19,7 +19,7 @@ function CreatePage() {
 
         }
         setLoading(true)
-        try {
+        try {   
             await axiosInstance.post("/notes/create", {
                 title, content
             })

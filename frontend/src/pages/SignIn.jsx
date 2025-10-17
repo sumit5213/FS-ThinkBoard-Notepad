@@ -24,27 +24,28 @@ function SignIn() {
         setPassword(event.target.value);
     };
 
-    const validatePassword = () => {
-        if (isSignUp && password !== confirmPassword) {
-            setPasswordMatchError("Passwords don't match");
-            return false;
-        } else {
-            setPasswordMatchError("");
-            return true;
-        }
-    };
+    // const validatePassword = () => {
+    //     if (isSignUp && password !== confirmPassword) {
+    //         setPasswordMatchError("Passwords don't match");
+    //         return false;
+    //     } else {
+    //         setPasswordMatchError("");
+    //         return true;
+    //     }
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (!validatePassword()) return;
+            // if (!validatePassword()) return;
 
-            let res;
-            if (isSignUp) {
-                res = await axiosInstance.post("/user/signup", { email, password });
-            } else {
-                res = await axiosInstance.post("/user/login", { email, password });
-            }
+            // let res;
+            // if (isSignUp) {
+            //     res = await axiosInstance.post("/user/signup", { email, password });
+            // } else {
+            //     res = await axiosInstance.post("/user/login", { email, password });
+            // }
+            let res = await axiosInstance.post("/user/signup", { email, password });
             login(res.data.token);
 
         } catch (error) {
@@ -85,7 +86,7 @@ function SignIn() {
                                         required
                                     />
                                 </div>
-                                {isSignUp && (
+                                {/* {isSignUp && (
                                     <div className="form-control mb-4">
                                         <label className="label"><span className="label-text">Confirm Password</span></label>
                                         <input
@@ -98,30 +99,37 @@ function SignIn() {
                                         />
                                         {passwordMatchError && <p className="text-red-500 text-sm mt-1">{passwordMatchError}</p>}
                                     </div>
-                                )}
+                                )} */}
 
                                 <div className="form-control">
                                     <label className="label cursor-pointer justify-start gap-2">
-                                        <input type="checkbox" 
-                                                checked={showPassword} 
-                                                onChange={handleTogglePassword} 
-                                                className="checkbox checkbox-primary" 
+                                        <input type="checkbox"
+                                            checked={showPassword}
+                                            onChange={handleTogglePassword}
+                                            className="checkbox checkbox-primary"
                                         />
                                         <span className="label-text text-white">Show Password</span>
                                     </label>
                                 </div>
-                                <div className="card-actions justify-end">
+                                {/* <div className="card-actions justify-end">
                                     <button type="submit" className="btn btn-primary hover:text-orange-400 text-black">
                                         {isSignUp ? "Sign Up" : "Sign In"}
                                     </button>
+                                </div> */}
+
+                                <div className="card-actions justify-end">
+                                    <button type="submit" className="btn btn-primary hover:text-orange-400 text-black">
+                                        {!isSignUp && "Sign In"}
+                                    </button>
                                 </div>
+
                             </form>
 
                             <div className="divider text-white my-4">OR</div>
 
                             {/* Conditional Google Buttons   */}
-                            
-                            {isSignUp ? (
+
+                            {/* {isSignUp ? (
                                 // Show this button when in Sign Up mode
                                 <a href={GOOGLE_AUTH_URL} className="btn btn-outline w-full">
                                     Sign Up with Google
@@ -131,15 +139,21 @@ function SignIn() {
                                 <a href={GOOGLE_AUTH_URL} className="btn btn-outline w-full">
                                     Sign In with Google
                                 </a>
+                            )} */}
+
+                            {!isSignUp && (
+                                <a href={GOOGLE_AUTH_URL} className="btn btn-outline w-full">
+                                    Sign In with Google
+                                </a>
                             )}
 
                             {/* --- Toggle between modes --- */}
-                            <p className="mt-4 text-center text-sm text-gray-600">
+                            {/* <p className="mt-4 text-center text-sm text-gray-600">
                                 {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
                                 <button className='text-blue-500 hover:underline' type="button" onClick={() => setIsSignUp(!isSignUp)}>
                                     {isSignUp ? "Sign In" : "Sign Up"}
                                 </button>
-                            </p>
+                            </p> */}
                         </div>
                     </div>
                 </div>
