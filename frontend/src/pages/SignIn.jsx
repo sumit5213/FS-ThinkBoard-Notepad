@@ -33,11 +33,6 @@ function SignIn() {
     //         return true;
     //     }
     // };
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> e2b074f (changes)
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
