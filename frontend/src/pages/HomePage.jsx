@@ -5,7 +5,6 @@ import RateLimitUI from '../components/RateLimitUI';
 import toast from 'react-hot-toast';
 import NoteCard from '../components/NoteCard';
 import NotesNotFound from '../components/NotesNotFound';
-import api from '../lib/axios';
 import axiosInstance from '../lib/axios';
 
 

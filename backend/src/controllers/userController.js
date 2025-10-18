@@ -71,7 +71,7 @@ export async function loginAndSignup(req, res) {
       if (password.length < 4) {
         return res
           .status(400)
-          .json({ msg: 'Password must be at least 6 characters' });
+          .json({ msg: 'Password must be at least 4 characters' });
       }
 
       user = new User({
@@ -84,20 +84,14 @@ export async function loginAndSignup(req, res) {
 
       await user.save();
     }
-    const payload = {
-      user: {
-        id: user.id, // Mongoose uses 'id' as a virtual getter for '_id'
-      },
-    };
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: '5h' },
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      }
-    );
+    // const payload = {
+    //   user: {
+    //     id: user._id, // Mongoose uses 'id' as a virtual getter for '_id'
+    //   },
+    // };
+
+    const token = jwt.sign( { id: user._id }, process.env.JWT_SECRET, { expiresIn: '5h' });
+    return res.status(201).json({ user, token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
