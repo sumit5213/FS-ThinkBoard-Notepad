@@ -44,7 +44,7 @@ function SignIn() {
             // } else {
             //     res = await axiosInstance.post("/user/login", { email, password });
             // }
-            let res = await axiosInstance.post("/user/signup", { email, password });
+            let res = await axiosInstance.post("/user/login", { email, password });
             login(res.data.token);
 
         } catch (error) {
